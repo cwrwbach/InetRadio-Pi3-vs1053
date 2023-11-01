@@ -66,8 +66,8 @@ enum PlayerStates {
 } playerState;
 
 //---
-
-int sock_listen(int port)
+/*
+int xxsock_listen(int port)
 {
 int i, sd;
 
@@ -93,7 +93,7 @@ else{
   return sd;									//all good, return socket descriptor
 }
 }
-
+*/
 //---
 
 void VS1003PlayFile(FILE *readFp) 
@@ -250,6 +250,9 @@ usleep(10);
 
 //<<< I don't know whether we need SM_SDISHARE, or not ??? >>>
 WriteSci(SCI_MODE, SM_SDINEW|SM_SDISHARE|SM_TESTS|SM_RESET);
+
+//Tried this but wow and flutter! (SM_STREAM) see data sheet page 39
+//WriteSci(SCI_MODE, SM_SDINEW|SM_SDISHARE|SM_TESTS|SM_RESET|SM_STREAM);
 //WriteSci(SCI_MODE, SM_SDINEW|SM_TESTS|SM_RESET);
 
   /* A quick sanity check: write to two registers, then test if we

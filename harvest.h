@@ -41,6 +41,7 @@ void set_station()
 //#define SMOOTH
 //#define VIRGIN
 //#define SWISS
+#define OREGON
 
 #ifdef CFM
 //"http://media-ice.musicradio.com:80/ClassicFMMP3"); >>WORks
@@ -115,24 +116,29 @@ myport = 80;
 #endif
 
 
+
 #ifdef SWISS
-https://stream.srg-ssr.ch/m/rsc_de/mp3_128
+//https://stream.srg-ssr.ch/m/rsc_de/mp3_128
 strcpy(host_url,"stream.srg-ssr.ch"); 
 strcpy (myurl,"/m/rsc_de/mp3_128"); 
 strcpy(useragent,"Streamripper/1.x");
 strcpy(myhost,"stream.srg-ssr.ch");
-myport = 80;
+myport = 80;fred
 //#define METINT 16000
 #endif
+
+
+
+#ifdef OREGON
+//https://allclassical.streamguys1.com/ac96k 
+strcpy(host_url,"allclassical.streamguys1.com"); 
+strcpy (myurl,"/ac96k"); 
+strcpy(useragent,"Streamripper/1.x");
+strcpy(myhost,"allclassical.streamguys1.com");
+myport = 80;
+#endif
+
 }
-
-
-
-
-
-
-
-
 
 //--------------------------------------------
 //Inflamations

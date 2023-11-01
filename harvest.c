@@ -126,10 +126,6 @@ if(pos > 0 )
 }                    
 
 
-
-
-
-
 /*
 
 //This the separate thread for audio play-out
@@ -178,6 +174,8 @@ fileName = name;
 
 strcpy(name,"/dev/shm/mable");
 
+char * myfifo ="/dev/shm/mable";
+mkfifo(myfifo,0666);
 
 fp = fopen(fileName, "rb");
 
@@ -185,20 +183,8 @@ while(1)
     {
     VS1003PlayFile(fp);
     }
-
-
-
 return 0;
 }
-
-
-
-
-
-
-
-
-
 
 //================================================
 
@@ -220,14 +206,17 @@ vs1053_configure();
 VSTestInitSoftware();
 usleep(100000);
 
-pthread_create(&go_play, NULL, play_id, NULL);
-
 printf("\n   --- ICY STREAM HARVESTER ---\n");
+
+pthread_create(&go_play, NULL, play_id, NULL);
+usleep(10000);
 
 //fifo setup
 char * myfifo ="/dev/shm/mable";
 mkfifo(myfifo,0666);
 fifo_d = open(myfifo,O_WRONLY);
+
+//pthread_create(&go_play, NULL, play_id, NULL);
 
 if (signal(SIGINT, sig_handler) == SIG_ERR)
   printf("\nCan't catch SIGINT\n");
@@ -333,7 +322,7 @@ while(1) //Main loop
         while (meta_len >0);
     
         //just print it for now
-        printf("META-DATA>>> %s \n",file_buf);
+      //  printf("META-DATA>>> %s \n",file_buf);
 
         mytime++;
         secs = mytime/2;
